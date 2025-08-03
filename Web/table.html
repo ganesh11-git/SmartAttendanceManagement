@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Merged Attendance Report</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance Summary</h1>
+    <div id="table-container"></div>
+
+    <script>
+        // Fetch attendance data from PHP
+        fetch('fetchReport.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                startDate: '',  // Or dynamically insert values
+                endDate: ''
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetched Data:", data);
+            const aggregated = aggregateAttendance(data);
+            const table = createSummaryTable(aggregated);
+            document.getElementById('table-container').appendChild(table);
+        })
+        .catch(error => {
+            console.error("Error fetching attendance:", error);
+        });
+
+        function aggregateAttendance(data) {
+            const countMap = new Map();
+            let total = 0;
+
+            data.forEach(entry => {
+                const name = entry.name?.trim(); // Use 'name' or your actual key
+                if (name) {
+                    total++;
+                    countMap.set(name, (countMap.get(name) || 0) + 1);
+                }
+            });
+
+            return { countMap, total };
+        }
+
+        function createSummaryTable({ countMap, total }) {
+            const table = document.createElement("table");
+
+            const headerRow = document.createElement("tr");
+            headerRow.innerHTML = `<th>Name</th><th>Attendance %</th>`;
+            table.appendChild(headerRow);
+
+            countMap.forEach((count, name) => {
+                const row = document.createElement("tr");
+                const percent = total > 0 ? ((count / total) * 100).toFixed(2) : "0.00";
+                row.innerHTML = `<td>${name}</td><td>${percent}%</td>`;
+                table.appendChild(row);
+            });
+
+            return table;
+        }
+    </script>
+</body>
+</html>

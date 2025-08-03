@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="sparkling-bg">
+    <div class="top-bar">
+        <button class="btn" onclick="manageAttendance();">Manage Attendance</button>
+        <button class="btn" onclick="viewReports();">View Reports</button>
+        <button class="btn" onclick="bunkersList();">Bunkers List</button>
+        <button class="btn" onclick="window.location.href='index.html';">Logout</button>
+    </div>
+
+    <div class="centered-container">
+        <div class="form-card">
+            <h2>Manage Attendance</h2>
+            <div class="form-group">
+                <label for="branch">Select Branch:</label>
+                <select id="branch">
+                    <option value="CSE">CSE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="IT">IT</option>
+                    <option value="AIML">AIML</option>
+                    <option value="CSD">CSD</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CE">CE</option>
+                    <option value="EIE">EIE</option>
+                    <option value="AIDS">AIDS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Select Year:</label>
+                <select id="year">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="section">Select Section:</label>
+                <select id="section">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date-range">Select Date Range:</label>
+                <input type="date" id="start-date" name="start-date">
+                <input type="date" id="end-date" name="end-date">
+            </div>
+            <button class="btn submit-btn" onclick="updateAttendance();">Update Attendance</button>
+        </div>
+    </div>
+
+    <script>
+        function manageAttendance() {
+            // Implement logic to manage attendance
+            alert('Managing attendance...');
+        }
+
+        function viewReports() {
+            // Implement logic to view reports
+            alert('Viewing reports...');
+        }
+
+        function bunkersList() {
+            // Implement logic to manage attendance
+            alert('Viewing bunkerslist...');
+        }
+
+        
+        function updateAttendance() {
+            // Implement logic to update attendance based on selected filters
+            alert('Attendance updated successfully.');
+        }
+    </script>
+</body>
+</html>

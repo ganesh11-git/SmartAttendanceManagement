@@ -1,0 +1,240 @@
+/* Background animation */
+body.sparkling-bg {
+    background: linear-gradient(45deg, #f39c12, #8e44ad, #3498db, #e74c3c);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: white;/* Background animation */
+    body.sparkling-bg {
+        background: linear-gradient(45deg, #f39c12, #8e44ad, #3498db, #e74c3c);
+        background-size: 400% 400%;
+        animation: gradient-animation 15s ease infinite;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Arial', sans-serif;
+        color: white;
+    }
+    
+    @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Top bar styling */
+    .top-bar {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    
+    /* Buttons in the top bar */
+    .btn {
+        padding: 12px 20px;
+        background-color: #e67e22;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+        background-color: #d35400;
+    }
+    
+    /* Centered container styling */
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding-top: 100px; /* Adjusted to push content below top bar */
+    }
+    
+    .form-card {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.7);
+        width: 300px;
+    }
+    
+    h2 {
+        margin-bottom: 20px;
+        color: #121617;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        color: #040405;
+    }
+    
+    .form-group label {
+        margin-bottom: 10px;
+        display: block;
+    }
+    
+    select, input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-top: 5px;
+        box-shadow: 0 4px 10px rgba(255, 253, 253, 0.982);
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #3498db;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+        background-color: #2980b9;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+        .top-bar {
+            flex-direction: column;
+        }
+    
+        .btn {
+            margin-bottom: 10px;
+        }
+    }
+    
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Top bar styling */
+.top-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+    padding: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Buttons in the top bar */
+.btn {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #FFD700; /* Golden color */
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #FFA500; /* Hover effect color */
+}
+
+/* Centered container styling */
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    padding-top: 60px; /* Adjusted to make space for top bar */
+    width: 100%;
+    position: relative;
+}
+
+.form-card {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.7);
+    width: 300px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #121617;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    color: #040405;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+select, input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
+    box-shadow: 0 4px 10px rgba(255, 253, 253, 0.982);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .top-bar {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .btn {
+        margin-bottom: 10px;
+    }
+
+    .form-card {
+        width: 90%;
+        padding: 20px;
+    }
+}

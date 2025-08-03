@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management Portal</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="sparkling-bg">
+    <div id="home" class="container">
+        <h1>Welcome to the SAM</h1>
+        <h1>Smart Attendance Monitoring</h1>
+        <div class="buttons">
+            <button class="btn" onclick="showLogin()">Admin Login</button>
+            <button class="btn" onclick="location.href='student-dashboard.html';">Student Access</button>
+        </div>
+    </div>
+    <div id="login" class="login-container" style="display: none;">
+        <h2>Admin Login</h2>
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn login-btn">Login</button>
+            <button type="button" class="btn back-btn" onclick="showHome()">Back to Home</button>
+        </form>
+        <p id="error-msg" style="color: red; display: none;">Invalid username or password!</p>
+    </div>
+    
+    <script>
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "password123";
+    
+        document.getElementById('adminLoginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+    
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                window.location.href = "admin.html";
+            } else {
+                const errorMsg = document.getElementById('error-msg');
+                errorMsg.style.display = 'block';
+            }
+        });
+    
+        function showLogin() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('login').style.display = 'block';
+        }
+    
+        function showHome() {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('login').style.display = 'none';
+        }
+    </script>
+    </body>
+</html>

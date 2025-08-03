@@ -1,0 +1,128 @@
+/* Background animation */
+body.sparkling-bg {
+    background: linear-gradient(45deg, #f39c12, #8e44ad, #3498db, #e74c3c);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Container for both home and login sections */
+.container, .login-container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Home page */
+#home h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d35400;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Login form */
+.login-container {
+    display: none;
+}
+
+.login-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.8);
+}
+
+.login-btn {
+    background-color: #3498db;
+    padding: 15px 30px;
+}
+
+.back-btn {
+    background-color: #e74c3c;
+    padding: 15px 30px;
+}
+
+.login-btn:hover {
+    background-color: #2980b9;
+}
+
+.back-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    #home h1 {
+        font-size: 1.8em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .login-container h2 {
+        font-size: 1.6em;
+    }
+}

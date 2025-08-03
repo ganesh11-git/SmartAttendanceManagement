@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard - Attendance Summary</title>
+    <link rel="stylesheet" href="student-dashboard.css">
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e6e6e6;
+        }
+        .table-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="sparkling-bg">
+    <div class="top-bar">
+        <button class="btn" onclick="showSection('class-wise');">Class-wise Attendance</button>
+        <button class="btn" onclick="showSection('student-wise');">Student-wise Attendance</button>
+        <button class="btn" onclick="location.href='index.html';">Logout</button>
+    </div>
+
+    <div class="centered-container">
+        <div class="form-card" id="form-section">
+            <div class="form-group">
+                <label for="branch">Select Branch:</label>
+                <select id="branch">
+                    <option value="CSE">CSE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="IT">IT</option>
+                    <option value="AIML">AIML</option>
+                    <option value="CSD">CSD</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CE">CE</option>
+                    <option value="EIE">EIE</option>
+                    <option value="AIDS">AIDS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Select Year:</label>
+                <select id="year">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="section">Select Section:</label>
+                <select id="section">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date-range">Select Date Range:</label>
+                <input type="date" id="start-date" name="start-date">
+                <input type="date" id="end-date" name="end-date">
+            </div>
+            <button class="btn submit-btn" onclick="viewReport();">View Report</button>
+            <div id="table-container" style="margin-top: 20px;"></div>
+
+        </div>
+    </div>
+
+    <div id="table-container" class="table-section"></div>
+
+    <script>
+        function showSection(sectionType) {
+            const formSection = document.getElementById('form-section');
+            formSection.style.display = 'block';
+        }
+
+        function viewReport() {
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+
+    if (!startDate || !endDate) {
+        alert("Please select both start and end dates.");
+        return;
+    }
+
+    fetch('fetchReport.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            startDate,
+            endDate
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const aggregated = aggregateAttendance(data);
+        const table = createSummaryTable(aggregated);
+        const container = document.getElementById('table-container');
+        container.innerHTML = ''; // Clear old table
+        container.appendChild(table);
+    })
+    .catch(error => {
+        console.error('Error fetching report:', error);
+        alert('Something went wrong while fetching the report.');
+    });
+}
+
+function aggregateAttendance(data) {
+    const countMap = new Map();
+    let total = 0;
+
+    data.forEach(entry => {
+        const roll = entry.roll_no?.trim();
+        const periods = parseInt(entry.periods_attended) || 0;
+
+        if (roll) {
+            total += periods;
+            countMap.set(roll, (countMap.get(roll) || 0) + periods);
+        }
+    });
+
+    return { countMap, total };
+}
+
+function createSummaryTable({ countMap, total }) {
+    const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+    table.style.width = "100%";
+    table.style.marginTop = "10px";
+
+    const headerRow = document.createElement("tr");
+    headerRow.innerHTML = `<th style="border: 1px solid #aaa; padding: 8px;">Name</th><th style="border: 1px solid #aaa; padding: 8px;">Attendance %</th>`;
+    table.appendChild(headerRow);
+
+    countMap.forEach((count, roll) => {
+        const row = document.createElement("tr");
+        const percent = total > 0 ? ((count / total) * 100).toFixed(2) : "0.00";
+        row.innerHTML = `
+            <td style="border: 1px solid #aaa; padding: 8px;">${roll}</td>
+            <td style="border: 1px solid #aaa; padding: 8px;">${percent}%</td>
+        `;
+        table.appendChild(row);
+    });
+
+    return table;
+}
+
+    </script>
+</body>
+</html>
